@@ -434,6 +434,40 @@
       }
     }
 
+    /* 🌊 WAVES ANIMATION */
+    .waves {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 220px;
+      background: url("https://svgshare.com/i/16T4.svg") repeat-x;
+      background-size: 1000px 220px;
+      z-index: -2;
+    }
+    
+    .wave1 {
+      animation: waveMove 25s linear infinite;
+      opacity: 0.4;
+    }
+    
+    .wave2 {
+      bottom: 40px;
+      animation: waveMove 40s linear infinite;
+      opacity: 0.25;
+    }
+    
+    .wave3 {
+      bottom: 20px;
+      animation: waveMove 60s linear infinite;
+      opacity: 0.15;
+    }
+    
+    @keyframes waveMove {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1000px; }
+    }
+
   </style>
 </head>
   <script>
@@ -451,43 +485,9 @@
 <body>
 
   <!-- 🌊 WAVES -->
-  <div class="waves"></div>
-  <div class="waves second"></div>
-  <div class="waves third"></div>
-  
-  <style>
-  /* 🌊 WAVES ANIMATION */
-  .waves {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 220px;
-    background: url("https://svgshare.com/i/16T4.svg") repeat-x;
-    background-size: 1000px 220px;
-    animation: waveMove 25s linear infinite;
-    opacity: 0.4;
-    z-index: -2;
-  }
-  
-  .waves.second {
-    bottom: 40px;
-    animation-duration: 40s;
-    opacity: 0.25;
-  }
-  
-  .waves.third {
-    bottom: 20px;
-    animation-duration: 60s;
-    opacity: 0.15;
-  }
-  
-  @keyframes waveMove {
-    0% { background-position-x: 0; }
-    100% { background-position-x: 1000px; }
-  }
-  </style>
-
+  <div class="waves wave1"></div>
+  <div class="waves wave2"></div>
+  <div class="waves wave3"></div> 
 
   <!-- 🏖 HERO -->
   <section class="hero">
