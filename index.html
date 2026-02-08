@@ -353,7 +353,8 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   (function(){
-    emailjs.init("_AHa9YQgmrCYO1IxY", "template_k9h1kyb");
+    emailjs.init("_AHa9YQgmrCYO1IxY");
+    emailjs.sendForm("service_9yt72af", "template_k9h1kyb");
   })();
 
   document.getElementById("contactForm").addEventListener("submit", function(e) {
