@@ -402,6 +402,29 @@
     </form>
   </section>
 
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("_AHa9YQgmrCYO1IxY");
+    })();
+  
+    const contactForm = document.getElementById("contactForm");
+    
+    contactForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      // Send the email
+      emailjs.sendForm("service_9yt72af", "template_k9h1kyb", this)
+        .then(function() {
+          alert("Message sent successfully! 🎉"); // success
+          contactForm.reset();
+        }, function(error) {
+          alert("Oops… something went wrong. ❌\n" + JSON.stringify(error)); // error
+        });
+    });
+  </script>
+
+  
   <script>
     // Contact form alert
     document.getElementById('contactForm').addEventListener('submit', function(e){
