@@ -453,22 +453,41 @@
   <!-- 🌊 WAVES -->
   <div class="waves"></div>
   <div class="waves second"></div>
+  <div class="waves third"></div>
+  
+  <style>
+  /* 🌊 WAVES ANIMATION */
+  .waves {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 220px;
+    background: url("https://svgshare.com/i/16T4.svg") repeat-x;
+    background-size: 1000px 220px;
+    animation: waveMove 25s linear infinite;
+    opacity: 0.4;
+    z-index: -2;
+  }
+  
+  .waves.second {
+    bottom: 40px;
+    animation-duration: 40s;
+    opacity: 0.25;
+  }
+  
+  .waves.third {
+    bottom: 20px;
+    animation-duration: 60s;
+    opacity: 0.15;
+  }
+  
+  @keyframes waveMove {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1000px; }
+  }
+  </style>
 
-  <!-- 🌞 THEME TOGGLE -->
-  <div class="theme-toggle" id="themeToggle">🌙</div>
-
-  <!-- 🔝 NAV -->
-  <header>
-    <div class="nav-container">
-      <div class="logo">Colby Reardon</div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#services">What I Do</a>
-        <a href="#gallery">Work</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
   <!-- 🏖 HERO -->
   <section class="hero">
