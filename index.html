@@ -1,352 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Colby Reardon | Web Developer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colby Reardon | Web Developer</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --accent:#38bdf8;
-  --accent-dark:#0ea5e9;
-  --glass: rgba(255,255,255,0.12);
-  --glass-hover: rgba(255,255,255,0.18);
-  --bg:#0b1220;
-  --text:white;
-}
+  <style>
+    :root {
+      --accent:#38bdf8;
+      --accent-dark:#0ea5e9;
+      --glass: rgba(255,255,255,0.12);
+      --glass-hover: rgba(255,255,255,0.18);
+      --bg:#0b1220;
+      --text:white;
+    }
 
-body.light {
-  --bg:#f7fbff;
-  --text:#0f172a;
-  --glass: rgba(0,0,0,0.06);
-  --glass-hover: rgba(0,0,0,0.1);
-}
+    body.light {
+      --bg:#f7fbff;
+      --text:#0f172a;
+      --glass: rgba(0,0,0,0.06);
+      --glass-hover: rgba(0,0,0,0.1);
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Fredoka',sans-serif;}
-html{scroll-behavior:smooth;}
-body{
-  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat fixed;
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-  position:relative;
-}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Fredoka',sans-serif;}
+    html{scroll-behavior:smooth;}
+    body{
+      background: var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      position:relative;
+    }
 
-/* 🌊 WAVES */
-.wave-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 200%;
-  height: 220px;
-  overflow: hidden;
-  z-index: -2;
-}
+    /* 🌊 WAVES BACKGROUND */
+    .waves {
+      position:fixed;
+      bottom:0;
+      left:0;
+      width:200%;
+      height:220px;
+      background:url("https://svgshare.com/i/16T4.svg");
+      background-size:1000px 220px;
+      animation:waveMove 25s linear infinite;
+      opacity:0.4;
+      z-index:-2;
+    }
 
-.wave {
-  position: absolute;
-  bottom: 0;
-  width: 200%;
-  height: 220px;
-  background-repeat: repeat-x;
-  background-size: 1000px 220px;
-  opacity: 0.4;
-  animation: waveMove 25s linear infinite;
-}
+    .waves.second {
+      bottom:40px;
+      animation-duration:40s;
+      opacity:0.25;
+    }
 
-.wave.second {
-  bottom: 40px;
-  opacity: 0.25;
-  animation-duration: 40s;
-}
+    @keyframes waveMove {
+      from{background-position-x:0;}
+      to{background-position-x:1000px;}
+    }
 
-.wave.first {
-  background-image: url("https://svgshare.com/i/16T4.svg");
-}
+    /* 🌞 DARK / LIGHT TOGGLE */
+    .theme-toggle {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:999px;
+      padding:12px 18px;
+      cursor:pointer;
+      backdrop-filter:blur(10px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.3);
+      z-index:1000;
+      transition:0.3s;
+    }
+    .theme-toggle:hover{transform:scale(1.08);}
 
-.wave.second {
-  background-image: url("https://svgshare.com/i/16T4.svg");
-}
+    /* 🔝 NAV */
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter:blur(14px);
+      background:rgba(255,255,255,0.2);
+      border-bottom:1px solid rgba(255,255,255,0.2);
+      z-index:1000;
+    }
+    .nav-container{
+      max-width:1100px;
+      margin:auto;
+      padding:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .logo{font-size:1.6rem;font-weight:700;}
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      margin-left:25px;
+      font-weight:500;
+      position:relative;
+      transition:0.3s;
+    }
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:var(--accent);
+      transition:0.3s;
+      border-radius:10px;
+    }
+    nav a:hover::after{width:100%;}
+    nav a:hover{color:var(--accent);}
 
-@keyframes waveMove {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    /* 🏖 HERO */
+    .hero{
+      min-height:95vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:60px 20px;
+      text-align:center;
+      position:relative;
+    }
 
-/* 🌞 DARK / LIGHT TOGGLE */
-.theme-toggle {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--glass);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:999px;
-  padding:12px 18px;
-  cursor:pointer;
-  backdrop-filter:blur(10px);
-  box-shadow:0 8px 25px rgba(0,0,0,0.3);
-  z-index:1000;
-  transition:0.3s;
-}
-.theme-toggle:hover{transform:scale(1.08);}
+    .hero-box{
+      max-width:720px;
+      background:var(--glass);
+      backdrop-filter:blur(20px);
+      padding:60px 40px;
+      border-radius:30px;
+      box-shadow:0 25px 60px rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.2);
+      animation:floatBox 6s ease-in-out infinite;
+    }
 
-/* 🔝 NAV */
-header{
-  position:sticky;
-  top:0;
-  backdrop-filter:blur(14px);
-  background:rgba(255,255,255,0.2);
-  border-bottom:1px solid rgba(255,255,255,0.2);
-  z-index:1000;
-}
-.nav-container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{font-size:1.6rem;font-weight:700;}
-nav a{
-  color:var(--text);
-  text-decoration:none;
-  margin-left:25px;
-  font-weight:500;
-  position:relative;
-  transition:0.3s;
-}
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:0.3s;
-  border-radius:10px;
-}
-nav a:hover::after{width:100%;}
-nav a:hover{color:var(--accent);}
+    @keyframes floatBox{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+    }
 
-/* 🏖 HERO */
-.hero{
-  min-height:95vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:60px 20px;
-  text-align:center;
-}
+    /* 🧑 PHOTO BOX */
+    .photo-box{
+      width:200px;
+      height:240px;
+      margin:0 auto 30px;
+      border-radius:22px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,0.25);
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+      background:rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
 
-.hero-box{
-  max-width:720px;
-  background:var(--glass);
-  backdrop-filter:blur(20px);
-  padding:60px 40px;
-  border-radius:30px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.35);
-  border:1px solid rgba(255,255,255,0.2);
-  animation:floatBox 6s ease-in-out infinite;
-}
+    .photo-box:hover{
+      transform:scale(1.05) rotate(-1deg);
+      box-shadow:0 25px 60px rgba(56,189,248,0.6);
+    }
 
-@keyframes floatBox{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-}
+    .photo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-.photo-box{
-  width:200px;
-  height:240px;
-  margin:0 auto 30px;
-  border-radius:22px;
-  overflow:hidden;
-  border:2px solid rgba(255,255,255,0.25);
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
-  background:rgba(255,255,255,0.08);
-  transition:0.4s;
-}
+    .hero h1{
+      font-size:clamp(2.3rem,5vw,3.3rem);
+      margin-bottom:10px;
+    }
 
-.photo-box:hover{
-  transform:scale(1.05) rotate(-1deg);
-  box-shadow:0 25px 60px rgba(56,189,248,0.6);
-}
+    .typing{
+      color:var(--accent);
+      font-weight:700;
+    }
 
-.photo-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .hero p{
+      font-size:1.1rem;
+      opacity:0.9;
+      margin-bottom:35px;
+    }
 
-.hero h1{
-  font-size:clamp(2.3rem,5vw,3.3rem);
-  margin-bottom:10px;
-}
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
 
-.typing{
-  color:var(--accent);
-  font-weight:700;
-}
+    .btn{
+      padding:12px 26px;
+      border-radius:999px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      transition:all 0.3s;
+    }
 
-.hero p{
-  font-size:1.1rem;
-  opacity:0.9;
-  margin-bottom:35px;
-}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+      color:black;
+      box-shadow:0 8px 25px rgba(56,189,248,0.45);
+    }
 
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
-}
+    .btn-primary:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 12px 35px rgba(56,189,248,0.65);
+    }
 
-.btn{
-  padding:12px 26px;
-  border-radius:999px;
-  font-weight:600;
-  border:none;
-  cursor:pointer;
-  text-decoration:none;
-  transition:all 0.3s;
-}
+    .btn-outline{
+      background:transparent;
+      border:2px solid rgba(255,255,255,0.35);
+      color:var(--text);
+    }
 
-.btn-primary{
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  color:black;
-  box-shadow:0 8px 25px rgba(56,189,248,0.45);
-}
+    .btn-outline:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+      transform:translateY(-2px);
+    }
 
-.btn-primary:hover{
-  transform:translateY(-2px) scale(1.05);
-  box-shadow:0 12px 35px rgba(56,189,248,0.65);
-}
+    /* 🌴 SECTIONS */
+    section{
+      max-width:1100px;
+      margin:auto;
+      padding:110px 20px;
+      text-align:center;
+    }
 
-.btn-outline{
-  background:transparent;
-  border:2px solid rgba(255,255,255,0.35);
-  color:var(--text);
-}
+    h2{
+      font-size:2.4rem;
+      margin-bottom:14px;
+      color:var(--accent);
+    }
 
-.btn-outline:hover{
-  border-color:var(--accent);
-  color:var(--accent);
-  transform:translateY(-2px);
-}
+    .section-sub{
+      max-width:720px;
+      margin:auto;
+      font-size:1.05rem;
+      opacity:0.9;
+    }
 
-/* ✨ SCROLL ANIMATIONS */
-.reveal{
-  opacity:0;
-  transform:translateY(40px) scale(0.96);
-  transition:0.8s cubic-bezier(.2,.8,.2,1);
-}
+    /* 🧩 CARDS */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+      margin-top:55px;
+    }
 
-.reveal.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
+    .card{
+      background:var(--glass);
+      backdrop-filter:blur(14px);
+      padding:34px 28px;
+      border-radius:26px;
+      transition:all 0.4s;
+      box-shadow:0 12px 35px rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.15);
+    }
 
-/* 💧 CLICK RIPPLE */
-.ripple {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(56,189,248,0.6) 0%, rgba(56,189,248,0.3) 40%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: rippleExpand 0.7s ease-out forwards;
-  z-index: 9999;
-}
+    .card:hover{
+      transform:translateY(-12px) scale(1.04);
+      background:var(--glass-hover);
+      box-shadow:0 25px 55px rgba(0,0,0,0.45);
+    }
 
-@keyframes rippleExpand {
-  from { transform: translate(-50%, -50%) scale(0.2); opacity: 0.8; }
-  to { transform: translate(-50%, -50%) scale(6); opacity: 0; }
-}
-</style>
+    .card h3{
+      font-size:1.3rem;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      opacity:0.9;
+      font-size:0.95rem;
+    }
+
+    /* 🖼 GALLERY */
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:26px;
+      margin-top:50px;
+    }
+
+    .bubble-img{
+      width:100%;
+      border-radius:22px;
+      cursor:pointer;
+      transition:0.4s cubic-bezier(.2,.8,.2,1);
+      box-shadow:0 12px 35px rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+    }
+
+    .bubble-img:hover{
+      transform:translateY(-10px) scale(1.05) rotate(-1deg);
+      box-shadow:0 20px 55px rgba(56,189,248,0.5);
+    }
+
+    /* ✉️ CONTACT */
+    form{
+      max-width:520px;
+      margin:55px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    input, textarea{
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.25);
+      background:rgba(255,255,255,0.08);
+      color:var(--text);
+      font-size:0.95rem;
+      outline:none;
+      transition:0.25s;
+    }
+
+    input::placeholder, textarea::placeholder{
+      color:rgba(255,255,255,0.7);
+    }
+
+    input:focus, textarea:focus{
+      border-color:var(--accent);
+      background:rgba(255,255,255,0.12);
+      box-shadow:0 0 0 3px rgba(56,189,248,0.3);
+    }
+
+    button{
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+      border:none;
+      padding:14px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      color:black;
+      transition:0.3s;
+      box-shadow:0 8px 25px rgba(56,189,248,0.45);
+    }
+
+    button:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 12px 35px rgba(56,189,248,0.65);
+    }
+
+    button:active{transform:scale(0.95);}
+
+    /* 🌟 FUN STATS */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:28px;
+      margin-top:60px;
+    }
+
+    .stat{
+      background:var(--glass);
+      padding:30px 20px;
+      border-radius:22px;
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      transition:0.35s;
+    }
+
+    .stat:hover{
+      transform:translateY(-10px) scale(1.05);
+      box-shadow:0 18px 45px rgba(56,189,248,0.45);
+    }
+
+    .stat h3{
+      font-size:2.2rem;
+      color:var(--accent);
+    }
+
+    .stat p{
+      opacity:0.9;
+      font-size:0.95rem;
+    }
+
+    /* 👣 FOOTER */
+    footer{
+      text-align:center;
+      padding:40px 20px;
+      background:rgba(255,255,255,0.15);
+      border-top:1px solid rgba(255,255,255,0.2);
+      opacity:0.9;
+      font-size:0.9rem;
+      backdrop-filter:blur(12px);
+    }
+
+    /* 📱 MOBILE */
+    @media(max-width:700px){
+      .nav-container{flex-direction:column;gap:12px;}
+      nav a{margin-left:0;}
+    }
+
+    /* ✨ SCROLL ANIMATIONS */
+    .reveal{
+      opacity:0;
+      transform:translateY(40px) scale(0.96);
+      transition:0.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    /* 💧 CLICK RIPPLE */
+    .ripple {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(56,189,248,0.6) 0%, rgba(56,189,248,0.3) 40%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: rippleExpand 0.7s ease-out forwards;
+      z-index: 9999;
+    }
+    
+    @keyframes rippleExpand {
+      from { transform: translate(-50%, -50%) scale(0.2); opacity: 0.8; }
+      to { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- 🌊 WAVES -->
-<div class="wave-container">
-  <div class="wave first"></div>
-  <div class="wave second"></div>
-</div>
+  <!-- 🌊 WAVES -->
+  <div class="waves"></div>
+  <div class="waves second"></div>
 
-<!-- 🌞 THEME TOGGLE -->
-<div class="theme-toggle" id="themeToggle">🌙</div>
+  <!-- 🌞 THEME TOGGLE -->
+  <div class="theme-toggle" id="themeToggle">🌙</div>
 
-<!-- 🔝 NAV -->
-<header>
-  <div class="nav-container">
-    <div class="logo">Colby Reardon</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">What I Do</a>
-      <a href="#gallery">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<!-- 🏖 HERO -->
-<section class="hero">
-  <div class="hero-box reveal">
-
-    <div class="photo-box">
-      <img src="me.jpg" alt="Colby">
+  <!-- 🔝 NAV -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">Colby Reardon</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">What I Do</a>
+        <a href="#gallery">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <h1>Hi, I'm Colby 👋</h1>
-    <p>
-      I’m a <span class="typing" id="typing">Web Developer</span>
+  <!-- 🏖 HERO -->
+  <section class="hero">
+    <div class="hero-box reveal">
+
+      <div class="photo-box">
+        <img src="me.jpg" alt="Colby">
+      </div>
+
+      <h1>Hi, I'm Colby 👋</h1>
+      <p>
+        I’m a <span class="typing" id="typing"></span>
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Hire Me</a>
+        <a href="#gallery" class="btn btn-outline">View Work</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 🌴 ABOUT -->
+  <section id="about" class="reveal">
+    <h2>About Me</h2>
+    <p class="section-sub">
+      Hey! I'm Colby — a student and creative web developer who loves building fun, fast,
+      and modern websites. I enjoy animations, clean UI, and making sites that feel alive.
     </p>
 
-    <div class="hero-buttons">
-      <a href="#contact" class="btn btn-primary">Hire Me</a>
-      <a href="#gallery" class="btn btn-outline">View Work</a>
+    <div class="stats">
+      <div class="stat">
+        <h3>3+</h3>
+        <p>Websites Built</p>
+      </div>
+      <div class="stat">
+        <h3>100%</h3>
+        <p>Custom Code</p>
+      </div>
+      <div class="stat">
+        <h3>Fast</h3>
+        <p>Performance Focused</p>
+      </div>
+      <div class="stat">
+        <h3>Fun</h3>
+        <p>Design Style</p>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- 🚀 SERVICES -->
+  <section id="services" class="reveal">
+    <h2>What I Do</h2>
+    <p class="section-sub">
+      I design and build modern websites that look awesome and feel smooth to use.
+    </p>
 
-<script>
-/* 💧 CLICK RIPPLE EFFECT */
-document.addEventListener("click", e => {
-  const ripple = document.createElement("div");
-  ripple.className = "ripple";
-  ripple.style.left = e.clientX + "px";
-  ripple.style.top = e.clientY + "px";
-  document.body.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 700);
-});
+    <div class="cards">
+      <div class="card">
+        <h3>💻 Web Development</h3>
+        <p>Clean HTML, CSS, and JavaScript websites that load fast and work everywhere.</p>
+      </div>
+      <div class="card">
+        <h3>🎨 UI Design</h3>
+        <p>Modern layouts with glass effects, animations, and great spacing.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Performance</h3>
+        <p>Optimized for speed, mobile, and smooth interactions.</p>
+      </div>
+    </div>
+  </section>
 
-/* 🌞 DARK/LIGHT TOGGLE */
-const themeBtn = document.getElementById('themeToggle');
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  themeBtn.textContent = document.body.classList.contains('light') ? '🌞' : '🌙';
-});
+  <!-- 🖼 WORK -->
+  <section id="gallery" class="reveal">
+    <h2>My Work</h2>
+    <p class="section-sub">
+      Some websites I've built recently 👇
+    </p>
 
-/* ✨ SCROLL REVEAL */
-const revealElements = document.querySelectorAll('.reveal');
-const revealOnScroll = () => {
-  const triggerBottom = window.innerHeight * 0.85;
-  revealElements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if(top < triggerBottom){
-      el.classList.add('show');
+    <div class="image-grid">
+      <a href="#" target="_blank">
+        <img src="project1.jpg" class="bubble-img" alt="Project 1">
+      </a>
+      <a href="#" target="_blank">
+        <img src="project2.jpg" class="bubble-img" alt="Project 2">
+      </a>
+      <a href="#" target="_blank">
+        <img src="project3.jpg" class="bubble-img" alt="Project 3">
+      </a>
+    </div>
+  </section>
+
+  <!-- ✉️ CONTACT -->
+  <section id="contact" class="reveal">
+    <h2>Contact Me Here</h2>
+    <p class="section-sub">
+      Have a project or just want to say hi? Send me a message 👇
+    </p>
+
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea rows="6" placeholder="Message..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- 👣 FOOTER -->
+  <footer class="reveal">
+    &copy; 2026 Colby Reardon. All rights reserved.
+  </footer>
+
+  <!-- 💻 SCRIPTS -->
+  <script>
+    // 🌞 DARK/LIGHT MODE
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      toggle.textContent = document.body.classList.contains('light') ? '🌙' : '☀️';
+    });
+
+    // ✨ SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add('show'); }
+      });
+    }, { threshold:0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // 💻 TYPING EFFECT
+    const typingEl = document.getElementById('typing');
+    const words = ['Web Developer', 'Student', 'Creative Coder', 'UI Designer'];
+    let i=0, j=0, currentWord='', isDeleting=false;
+    function type(){
+      currentWord = words[i];
+      if(!isDeleting){
+        typingEl.textContent = currentWord.substring(0,j+1);
+        j++;
+        if(j===currentWord.length){ isDeleting=true; setTimeout(type,1000); return;}
+      } else{
+        typingEl.textContent = currentWord.substring(0,j-1);
+        j--;
+        if(j===0){ isDeleting=false; i=(i+1)%words.length; setTimeout(type,500); return;}
+      }
+      setTimeout(type,isDeleting?70:120);
     }
-  });
-}
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
-</script>
+    type();
 
+    // 💧 CLICK RIPPLE
+    document.body.addEventListener('click', e=>{
+      const ripple = document.createElement('span');
+      ripple.className='ripple';
+      ripple.style.left=e.clientX+'px';
+      ripple.style.top=e.clientY+'px';
+      document.body.appendChild(ripple);
+      setTimeout(()=>ripple.remove(),700);
+    });
+  </script>
 </body>
 </html>
